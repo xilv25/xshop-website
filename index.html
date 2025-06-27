@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xshop - Marketplace Akun Game & Top-Up Terpercaya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /*
+        * CATATAN PENTING:
+        * Blok style ini adalah fallback jika variabel CSS tidak bekerja.
+        * Idealnya, setelah style.css benar, blok ini bisa dihapus dari SEMUA file HTML.
+        * Warna X putih di dark mode dan hitam di light mode.
+        * Warna shop cyan di dark mode dan biru tua elegan di light mode.
+        */
+        body[data-theme='dark'] .logo-x { color: #FFFFFF !important; }
+        body[data-theme='dark'] .logo-shop { color: #00BCD4 !important; }
+        body[data-theme='light'] .logo-x { color: #212529 !important; } /* Hitam gelap untuk Light mode */
+        body[data-theme='light'] .logo-shop { color: #1976D2 !important; } /* Biru Tua Elegan untuk Light mode */
+    </style>
+</head>
+<body class="bg-bg-primary text-text-primary font-sans flex flex-col min-h-screen">
+
+    <header class="bg-bg-secondary p-4 flex justify-between items-center shadow-lg sticky top-0 z-50">
+        <a href="index.html" class="text-3xl font-extrabold tracking-tight">
+            <span class="logo-x">X</span><span class="logo-shop">shop</span>
+        </a>
+        
+        <nav class="hidden md:flex items-center space-x-6">
+            <a href="jual-akun.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Jual Akun</a>
+            <a href="top-up.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Top-Up</a>
+            <a href="joki.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Joki</a>
+            <a href="bantuan.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Bantuan</a>
+            
+            <div class="relative group">
+                <button class="flex items-center space-x-2 text-text-primary hover:text-accent-primary transition-colors duration-200 focus:outline-none">
+                    <i class="fas fa-user-circle text-2xl text-accent-primary"></i>
+                    <span class="hidden lg:inline text-text-primary">Profil</span>
+                </button>
+                <div class="absolute right-0 mt-2 w-48 bg-bg-secondary rounded-md shadow-lg py-1 hidden group-hover:block transition-all duration-200 ease-out transform scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 origin-top-right">
+                    <a href="profil.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Profil Saya</a>
+                    <a href="transaksi.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Riwayat Transaksi</a>
+                    <a href="seller-dashboard.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Dasbor Penjual</a>
+                    <hr class="border-gray-700 my-1">
+                    <a href="login.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Login / Register</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="md:hidden">
+            <button id="menu-button" class="text-accent-primary focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-bg-primary bg-opacity-95 z-[999] hidden md:hidden flex flex-col">
+        <div class="flex justify-end p-4">
+            <button id="close-menu-button" class="text-accent-primary focus:outline-none">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col items-center space-y-6 text-xl mt-8">
+            <a href="index.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Home</a>
+            <a href="jual-akun.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Jual Akun</a>
+            <a href="top-up.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Top-Up</a>
+            <a href="joki.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Joki</a>
+            <a href="bantuan.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Bantuan</a>
+            <a href="profil.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Profil</a>
+            <a href="login.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Login / Register</a>
+            <hr class="border-gray-700 w-1/2 my-4">
+            <input type="text" placeholder="Cari..." class="w-4/5 p-2 rounded-lg bg-transparent border border-gray-700 text-text-primary shadow-inner focus:border-accent-primary focus:ring-1 focus:ring-accent-primary">
+        </nav>
+    </div>
+
+    <div class="floating-search-bar fixed top-[70px] md:top-[80px] left-1/2 -translate-x-1/2 w-[90%] md:w-3/5 lg:w-2/5 z-40">
+        <div class="relative">
+            <input type="text" placeholder="Cari akun, game, layanan..." class="w-full p-3 pl-10 rounded-full text-text-primary">
+            <i class="fas fa-search text-text-secondary absolute left-3 top-1/2 -translate-y-1/2"></i>
+        </div>
+    </div>
+
+
+    <main class="flex-grow container mx-auto px-4 py-8 md:p-8 pt-24 md:pt-28">
+        <section class="relative w-full overflow-hidden rounded-xl shadow-xl mb-12 h-60 md:h-80 slide-container">
+            <div id="banner-slideshow" class="flex h-full slides">
+                <a href="top-up.html" class="slide flex-shrink-0 w-full bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1200x400/003333/FFFFFF?text=Promo+Top-Up+Terbesar%21');">
+                    <div class="p-8 bg-gradient-to-t from-bg-primary/70 to-transparent w-full h-full flex items-end">
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-text-primary">Diskon Top-Up Gila-Gilaan!</h2>
+                    </div>
+                </a>
+                <a href="lihat-akun.html" class="slide flex-shrink-0 w-full bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1200x400/330033/FFFFFF?text=Akun+Sultan+Terbaru%21');">
+                    <div class="p-8 bg-gradient-to-t from-bg-primary/70 to-transparent w-full h-full flex items-end">
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-text-primary">Akun Sultan Menanti Anda!</h2>
+                    </div>
+                </a>
+                <a href="joki.html" class="slide flex-shrink-0 w-full bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1200x400/002200/FFFFFF?text=Layanan+Joki+Profesional%21');">
+                    <div class="p-8 bg-gradient-to-t from-bg-primary/70 to-transparent w-full h-full flex items-end">
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-text-primary">Joki Cepat & Aman!</h2>
+                    </div>
+                </a>
+            </div>
+            <button class="absolute top-1/2 left-4 -translate-y-1/2 bg-bg-primary bg-opacity-50 text-text-primary p-3 rounded-full z-10 hover:bg-opacity-75 transition-all slide-nav-button prev-slide"><i class="fas fa-chevron-left"></i></button>
+            <button class="absolute top-1/2 right-4 -translate-y-1/2 bg-bg-primary bg-opacity-50 text-text-primary p-3 rounded-full z-10 hover:bg-opacity-75 transition-all slide-nav-button next-slide"><i class="fas fa-chevron-right"></i></button>
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 dot-navigation">
+                <span class="dot active" data-slide-index="0"></span>
+                <span class="dot" data-slide-index="1"></span>
+                <span class="dot" data-slide-index="2"></span>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <a href="jual-akun.html" class="btn-primary flex items-center justify-center py-5 text-xl rounded-xl transform hover:scale-102 transition-transform duration-300">
+                <i class="fas fa-upload mr-3"></i> Jual Akun Anda Sekarang
+            </a>
+            <a href="lihat-akun.html" class="btn-secondary flex items-center justify-center py-5 text-xl rounded-xl transform hover:scale-102 transition-transform duration-300">
+                <i class="fas fa-eye mr-3"></i> Jelajahi Akun & Layanan
+            </a>
+        </section>
+
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl md:text-3xl font-bold text-text-primary">Akun Game Pilihan</h3>
+                <a href="lihat-akun.html" class="text-accent-primary hover:underline text-lg md:text-xl font-medium flex items-center">
+                    Lihat Selengkapnya <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                </a>
+            </div>
+            <div class="overflow-x-auto pb-4 custom-scrollbar">
+                <div class="flex space-x-6 min-w-max">
+                    <a href="detail-akun.html?id=1" class="card">
+                        <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=Akun+Mobile+Legends" alt="Akun Mobile Legends" class="w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Akun Sultan Mobile Legends</h4>
+                            <p class="text-text-secondary text-sm mb-2 line-clamp-2">Mythic Glory, Banyak Skin Epic & Collector! Hero lengkap dan emblem max.</p>
+                            <p class="text-text-primary font-extrabold text-xl">Rp 5.000.000</p>
+                            <span class="status-badge success mt-2 inline-block">Verified Seller</span>
+                        </div>
+                    </a>
+                    <a href="detail-akun.html?id=2" class="card">
+                        <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=Akun+Genshin+Impact" alt="Akun Genshin Impact" class="w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Akun Genshin Impact AR 58</h4>
+                            <p class="text-text-secondary text-sm mb-2 line-clamp-2">Char Bintang 5 Lengkap, Artefak GG! Abyss 36 bintang selalu tembus.</p>
+                            <p class="text-text-primary font-extrabold text-xl">Rp 7.500.000</p>
+                            <span class="status-badge warning mt-2 inline-block">Promo!</span>
+                        </div>
+                    </a>
+                    <a href="detail-akun.html?id=3" class="card">
+                        <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=Akun+Valorant" alt="Akun Valorant" class="w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Akun Valorant Radiant</h4>
+                            <p class="text-text-secondary text-sm mb-2 line-clamp-2">Full Agent, Banyak Skin Bundle Mahal! Rank Radiant episode terbaru.</p>
+                            <p class="text-text-primary font-extrabold text-xl">Rp 3.200.000</p>
+                        </div>
+                    </a>
+                    <a href="detail-akun.html?id=4" class="card">
+                        <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=Akun+Free+Fire" alt="Akun Free Fire" class="w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Akun Free Fire Sultan</h4>
+                            <p class="text-text-secondary text-sm mb-2 line-clamp-2">Banyak Emote Langka & Bundle EVO! Koleksi item langka tak terbatas.</p>
+                            <p class="text-text-primary font-extrabold text-xl">Rp 2.800.000</p>
+                        </div>
+                    </a>
+                    <a href="detail-akun.html?id=5" class="flex-none w-72 card">
+                        <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=Akun+COC" alt="Akun COC" class="w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Akun Clash of Clans TH15 Max</h4>
+                            <p class="text-text-secondary text-sm mb-2 line-clamp-2">Town Hall 15 Max, defense & troops kuat. Gem berlimpah.</p>
+                            <p class="text-text-primary font-extrabold text-xl">Rp 1.800.000</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl md:text-3xl font-bold text-text-primary">Layanan Joki Pilihan</h3>
+                <a href="joki.html" class="text-accent-primary hover:underline text-lg md:text-xl font-medium flex items-center">
+                    Lihat Selengkapnya <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                </a>
+            </div>
+            <div class="overflow-x-auto pb-4 custom-scrollbar">
+                <div class="flex space-x-6 min-w-max">
+                    <a href="joki.html?service=ml-rank" class="flex-none w-72 card">
+                        <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=Joki+ML+Rank" alt="Joki Mobile Legends Rank" class="w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Joki Rank Mobile Legends</h4>
+                            <p class="text-text-secondary text-sm mb-2 line-clamp-2">Naikkan rank Mobile Legends Anda sampai Mythic Glory dengan cepat.</p>
+                            <p class="text-text-primary font-extrabold text-xl">Mulai Rp 150.000</p>
+                            <span class="status-badge success mt-2 inline-block">Profesional</span>
+                        </div>
+                    </a>
+                    <a href="joki.html?service=genshin-mission" class="flex-none w-72 card">
+                        <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=Joki+Genshin+Mission" alt="Joki Genshin Impact Mission" class="w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Joki Misi Harian Genshin Impact</h4>
+                            <p class="text-text-secondary text-sm mb-2 line-clamp-2">Selesaikan misi harian dan weekly Anda tanpa ribet, dapatkan primogem!</p>
+                            <p class="text-text-primary font-extrabold text-xl">Mulai Rp 50.000</p>
+                            <span class="status-badge success mt-2 inline-block">Cepat</span>
+                        </div>
+                    </a>
+                    <a href="joki.html?service=valorant-rank" class="flex-none w-72 card">
+                        <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=Joki+Valorant+Rank" alt="Joki Valorant Rank" class="w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Joki Rank Valorant</h4>
+                            <p class="text-text-secondary text-sm mb-2 line-clamp-2">Naikkan rank Valorant Anda sampai Radiant dengan jaminan keamanan.</p>
+                            <p class="text-text-primary font-extrabold text-xl">Mulai Rp 200.000</p>
+                        </div>
+                    </a>
+                    <a href="joki.html?service=ff-leveling" class="flex-none w-72 card">
+                        <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=Joki+FF+Leveling" alt="Joki Free Fire Leveling" class="w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Joki Leveling Free Fire</h4>
+                            <p class="text-text-secondary text-sm mb-2 line-clamp-2">Cepat naikkan level akun Free Fire Anda untuk membuka fitur baru.</p>
+                            <p class="text-text-primary font-extrabold text-xl">Mulai Rp 75.000</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl md:text-3xl font-bold text-text-primary">Top-Up Pilihan</h3>
+                <a href="top-up.html" class="text-accent-primary hover:underline text-lg md:text-xl font-medium flex items-center">
+                    Lihat Selengkapnya <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                </a>
+            </div>
+            <div class="overflow-x-auto pb-4 custom-scrollbar">
+                <div class="flex space-x-6 min-w-max">
+                    <a href="top-up.html?game=mobilelegends" class="flex-none w-72 card">
+                        <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=TopUp+ML" alt="Top-Up Mobile Legends" class="w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Top-Up Diamond Mobile Legends</h4>
+                            <p class="text-text-secondary text-sm mb-2 line-clamp-2">Dapatkan Diamond MLBB dengan harga termurah dan proses instan.</p>
+                            <p class="text-text-primary font-extrabold text-xl">Mulai Rp 5.000</p>
+                            <span class="status-badge success mt-2 inline-block">Promo</span>
+                        </div>
+                    </a>
+                    <a href="top-up.html?game=genshinimpact" class="flex-none w-72 card">
+                        <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=TopUp+Genshin" alt="Top-Up Genshin Impact" class="w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Top-Up Blessing of the Welkin Moon</h4>
+                            <p class="text-text-secondary text-sm mb-2 line-clamp-2">Langganan Blessing Genshin Impact bulanan, primogem harian.</p>
+                            <p class="text-text-primary font-extrabold text-xl">Rp 75.000</p>
+                            <span class="status-badge warning mt-2 inline-block">Diskon 5%</span>
+                        </div>
+                    </a>
+                    <a href="top-up.html?game=valorant" class="flex-none w-72 card">
+                        <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=TopUp+Valorant" alt="Top-Up Valorant" class="w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Top-Up Valorant Points</h4>
+                            <p class="text-text-secondary text-sm mb-2 line-clamp-2">Isi ulang Valorant Points untuk beli skin keren.</p>
+                            <p class="text-text-primary font-extrabold text-xl">Mulai Rp 25.000</p>
+                        </div>
+                    </a>
+                    <a href="top-up.html?game=freefire" class="flex-none w-72 card">
+                        <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=TopUp+FF" alt="Top-Up Free Fire" class="w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Top-Up Diamond Free Fire</h4>
+                            <p class="text-text-primary font-extrabold text-xl">Mulai Rp 10.000</p>
+                            <span class="status-badge success mt-2 inline-block">Flash Sale!</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="mb-12">
+            <h3 class="text-2xl md:text-3xl font-bold text-text-primary mb-6 text-center">Mengapa Memilih Xshop?</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-6 bg-bg-secondary rounded-xl card">
+                    <i class="fas fa-shield-alt text-5xl text-accent-primary mb-4"></i>
+                    <h4 class="text-xl font-bold text-text-primary mb-2">Transaksi Aman & Terpercaya</h4>
+                    <p class="text-text-secondary">Sistem rekening bersama (escrow) melindungi pembeli dan penjual di setiap transaksi.</p>
+                </div>
+                <div class="p-6 bg-bg-secondary rounded-xl card">
+                    <i class="fas fa-rocket text-5xl text-accent-primary mb-4"></i>
+                    <h4 class="text-xl font-bold text-text-primary mb-2">Proses Cepat & Efisien</h4>
+                    <p class="text-text-secondary">Jual beli akun, top-up, dan joki game jadi lebih mudah dan instan.</p>
+                </div>
+                <div class="p-6 bg-bg-secondary rounded-xl card">
+                    <i class="fas fa-headset text-5xl text-accent-primary mb-4"></i>
+                    <h4 class="text-xl font-bold text-text-primary mb-2">Dukungan Pelanggan 24/7</h4>
+                    <p class="text-text-secondary">Tim kami siap membantu Anda kapan saja, pastikan pengalaman terbaik.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h3 class="text-2xl md:text-3xl font-bold text-text-primary mb-6">Berita & Update Terbaru</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="blog-detail.html?id=1" class="card">
+                    <img src="https://via.placeholder.com/600x400/1C1C1C/BDBDBD?text=Esports+Update" alt="Esports Update" class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold text-text-primary mb-1">Update Patch Mobile Legends 1.9.0!</h4>
+                        <p class="text-text-secondary text-sm mb-2">27 Juni 2025 | Game News</p>
+                        <p class="text-text-secondary text-sm line-clamp-3">Mengenai perubahan hero, nerf, buff, dan meta terbaru yang akan datang...</p>
+                    </div>
+                </a>
+                <a href="blog-detail.html?id=2" class="card">
+                    <img src="https://via.placeholder.com/600x400/1C1C1C/BDBDBD?text=Genshin+Tips" alt="Genshin Tips" class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold text-text-primary mb-1">Tips Cepat Farm Primogem Genshin Impact</h4>
+                        <p class="text-text-secondary text-sm mb-2">25 Juni 2025 | Tips & Guides</p>
+                        <p class="text-text-secondary text-sm line-clamp-3">Cara efektif mendapatkan primogem gratis untuk gacha karakter favorit Anda...</p>
+                    </div>
+                </a>
+                <a href="blog.html" class="card flex flex-col items-center justify-center p-4 text-center bg-bg-secondary hover:bg-gray-800 transition-colors duration-200">
+                    <i class="fas fa-arrow-right text-5xl text-accent-primary mb-4"></i>
+                    <h4 class="text-xl font-bold text-text-primary">Lihat Semua Berita</h4>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-bg-secondary p-8 mt-auto">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-text-secondary">
+            <div>
+                <h4 class="text-xl font-bold mb-4">
+                    <span style="color: var(--text-primary);">X</span><span style="color: var(--accent-primary);">shop</span>
+                </h4>
+                <p class="text-sm">Platform terpercaya untuk jual beli akun game, top-up, dan layanan joki.</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-discord text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-youtube text-xl"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-text-primary mb-4">Informasi</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="about-us.html" class="hover:text-accent-primary transition-colors">Tentang Kami</a></li>
+                    <li><a href="safety-center.html" class="hover:text-accent-primary transition-colors">Pusat Keamanan</a></li>
+                    <li><a href="kebijakan-privasi.html" class="hover:text-accent-primary transition-colors">Kebijakan Privasi</a></li>
+                    <li><a href="syarat-ketentuan.html" class="hover:text-accent-primary transition-colors">Syarat & Ketentuan</a></li>
+                    <li><a href="bantuan.html" class="hover:text-accent-primary transition-colors">Bantuan & FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-text-primary mb-4">Untuk Penjual</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="jual-akun.html" class="hover:text-accent-primary transition-colors">Jual Akun Anda</a></li>
+                    <li><a href="seller-dashboard.html" class="hover:text-accent-primary transition-colors">Dasbor Penjual</a></li>
+                    <li><a href="boost-listing.html" class="hover:text-accent-primary transition-colors">Promosikan Akun</a></li>
+                    <li><a href="seller-verification.html" class="hover:text-accent-primary transition-colors">Verifikasi Penjual</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-text-primary mb-4">Lainnya</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="blog.html" class="hover:text-accent-primary transition-colors">Blog & Berita</a></li>
+                    <li><a href="forum.html" class="hover:text-accent-primary transition-colors">Forum Komunitas</a></li>
+                    <li><a href="guides.html" class="hover:text-accent-primary transition-colors">Panduan Game</a></li>
+                    <li><a href="career.html" class="hover:text-accent-primary transition-colors">Karir di Xshop</a></li>
+                    <li><a href="affiliate.html" class="hover:text-accent-primary transition-colors">Program Afiliasi</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-text-secondary text-sm mt-8 pt-8 border-t border-gray-700">
+            &copy; 2025 Xshop. All rights reserved.
+        </div>
+    </footer>
+
+    <div class="md:hidden bottom-nav fixed bottom-0 left-0 right-0 py-3 flex justify-around items-center z-50">
+        <a href="transaksi.html" class="flex flex-col items-center text-text-secondary hover:text-accent-primary transition-colors">
+            <i class="fas fa-receipt text-xl mb-1"></i>
+            <span class="text-xs">Transaksi</span>
+        </a>
+        <a href="index.html" class="flex flex-col items-center text-accent-primary active-link">
+            <i class="fas fa-home text-xl mb-1"></i>
+            <span class="text-xs">Home</span>
+        </a>
+        <a href="jual-akun.html" class="flex flex-col items-center text-text-secondary hover:text-accent-primary transition-colors">
+            <i class="fas fa-upload text-xl mb-1"></i>
+            <span class="text-xs">Jual</span>
+        </a>
+        <a href="top-up.html" class="flex flex-col items-center text-text-secondary hover:text-accent-primary transition-colors">
+            <i class="fas fa-coins text-xl mb-1"></i>
+            <span class="text-xs">Top-Up</span>
+        </a>
+        <a href="profil.html" class="flex flex-col items-center text-text-secondary hover:text-accent-primary transition-colors">
+            <i class="fas fa-user text-xl mb-1"></i>
+            <span class="text-xs">Profil</span>
+        </a>
+    </div>
+
+    <script type="module" src="https://esm.sh/@supabase/supabase-js@2"></script>
+    <script type="module" src="script.js"></script>
+    
+    <script type="module">
+        // JavaScript untuk menerapkan tema saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'dark'; // Default dark
+            setTheme(savedTheme); // Memanggil fungsi global setTheme dari script.js
+        });
+    </script>
+</body>
+</html>
