@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Kelola Pengguna - Xshop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    </head>
+<body class="bg-bg-primary text-text-primary font-sans flex flex-col min-h-screen">
+
+    <header class="bg-bg-secondary p-4 flex justify-between items-center shadow-lg sticky top-0 z-50">
+        <a href="index.html" class="text-3xl font-extrabold tracking-tight">
+            <span style="color: var(--text-primary);">X</span><span style="color: var(--accent-primary);">shop</span>
+        </a>
+        
+        <nav class="hidden md:flex items-center space-x-6">
+            <a href="jual-akun.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Jual Akun</a>
+            <a href="top-up.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Top-Up</a>
+            <a href="joki.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Joki</a>
+            <a href="bantuan.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Bantuan</a>
+            
+            <div class="relative group">
+                <button class="flex items-center space-x-2 text-text-primary hover:text-accent-primary transition-colors duration-200 focus:outline-none">
+                    <i class="fas fa-user-circle text-2xl text-accent-primary"></i>
+                    <span class="hidden lg:inline text-text-primary">Profil</span>
+                </button>
+                <div class="absolute right-0 mt-2 w-48 bg-bg-secondary rounded-md shadow-lg py-1 hidden group-hover:block transition-all duration-200 ease-out transform scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 origin-top-right">
+                    <a href="profil.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Profil Saya</a>
+                    <a href="transaksi.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Riwayat Transaksi</a>
+                    <a href="seller-dashboard.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Dasbor Penjual</a>
+                    <hr class="border-gray-700 my-1">\n                    <a href="login.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Login / Register</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="md:hidden">
+            <button id="menu-button" class="text-accent-primary focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-bg-primary bg-opacity-95 z-[999] hidden md:hidden flex flex-col">
+        <div class="flex justify-end p-4">
+            <button id="close-menu-button" class="text-accent-primary focus:outline-none">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col items-center space-y-6 text-xl mt-8">
+            <a href="index.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Home</a>
+            <a href="jual-akun.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Jual Akun</a>
+            <a href="top-up.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Top-Up</a>
+            <a href="joki.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Joki</a>
+            <a href="bantuan.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Bantuan</a>
+            <a href="profil.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Profil</a>
+            <a href="login.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Login / Register</a>
+            <hr class="border-gray-700 w-1/2 my-4">\n            <input type="text" placeholder="Cari..." class="w-4/5 p-2 rounded-lg bg-transparent border border-gray-700 text-text-primary shadow-inner focus:border-accent-primary focus:ring-1 focus:ring-accent-primary">\n        </nav>
+    </div>
+
+    <div class="floating-search-bar fixed top-[70px] md:top-[80px] left-1/2 -translate-x-1/2 w-[90%] md:w-3/5 lg:w-2/5 z-40 hidden">
+        <div class="relative">
+            <input type="text" placeholder="Cari akun, game, layanan..." class="w-full p-3 pl-10 rounded-full text-text-primary">\n            <i class="fas fa-search text-text-secondary absolute left-3 top-1/2 -translate-y-1/2"></i>
+        </div>
+    </div>
+
+
+    <main class="flex-grow container mx-auto px-4 py-8 md:p-8">
+
+        <button onclick="window.history.back()" class="back-button-floating">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </button>
+
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-8 text-center">Admin - Kelola Pengguna</h2>
+        
+        <div class="bg-bg-secondary p-6 md:p-8 rounded-xl shadow-xl max-w-5xl mx-auto">
+            <p class="text-text-secondary mb-6 text-center">Tinjau dan kelola data semua pengguna terdaftar.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div>
+                    <label for="admin-filter-role" class="block text-text-primary text-sm font-semibold mb-2">Peran</label>
+                    <select id="admin-filter-role" class="form-input">
+                        <option value="all">Semua Peran</option>
+                        <option value="user">Pengguna Biasa</option>
+                        <option value="seller">Penjual</option>
+                        <option value="joki">Joki</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="admin-filter-status" class="block text-text-primary text-sm font-semibold mb-2">Status Akun</label>
+                    <select id="admin-filter-status" class="form-input">
+                        <option value="all">Semua Status</option>
+                        <option value="active">Aktif</option>
+                        <option value="suspended">Ditangguhkan</option>
+                        <option value="banned">Diblokir</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="admin-search-user" class="block text-text-primary text-sm font-semibold mb-2">Cari Pengguna</label>
+                    <input type="text" id="admin-search-user" class="form-input" placeholder="Cari berdasarkan nama atau email...">
+                </div>
+            </div>
+
+            <div class="overflow-x-auto custom-scrollbar">
+                <table class="min-w-full bg-bg-primary rounded-lg overflow-hidden border border-gray-700">
+                    <thead class="bg-bg-secondary">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">ID Pengguna</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Nama & Email</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Peran</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Status</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Terakhir Login</th>
+                            <th class="px-4 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        <tr class="hover:bg-gray-800 transition-colors duration-150">
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-text-primary">USR-001</td>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm text-text-secondary">\n                                <p class="text-text-primary font-medium">Budi Santoso</p>\n                                <p class="text-xs">budi.s@email.com</p>\n                            </td>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm text-text-secondary">Penjual</td>
+                            <td class="px-4 py-4 whitespace-nowrap">\n                                <span class="status-badge success">Aktif</span>
+                            </td>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm text-text-secondary">27 Juni 2025</td>
+                            <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">\n                                <button class="text-accent-primary hover:text-accent-hover mr-2">Detail</button>\n                                <button class="text-status-error hover:text-red-600">Blokir</button>\n                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-800 transition-colors duration-150">
+                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-text-primary">USR-002</td>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm text-text-secondary">\n                                <p class="text-text-primary font-medium">Siti Aminah</p>\n                                <p class="text-xs">siti.a@email.com</p>\n                            </td>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm text-text-secondary">Pengguna Biasa</td>
+                            <td class="px-4 py-4 whitespace-nowrap">\n                                <span class="status-badge warning">Ditangguhkan</span>
+                            </td>
+                            <td class="px-4 py-4 whitespace-nowrap text-sm text-text-secondary">25 Juni 2025</td>
+                            <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">\n                                <button class="text-accent-primary hover:text-accent-hover mr-2">Detail</button>\n                                <button class="text-status-success hover:text-green-600">Aktifkan</button>\n                            </td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="flex justify-center items-center space-x-4 mt-8">\n                <button class="btn-secondary py-2 px-4 rounded-lg text-sm"><i class="fas fa-chevron-left mr-2"></i> Sebelumnya</button>\n                <span class="text-text-secondary">Halaman 1 dari 3</span>\n                <button class="btn-secondary py-2 px-4 rounded-lg text-sm">Selanjutnya <i class="fas fa-chevron-right ml-2"></i></button>\n            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-bg-secondary p-8 mt-auto">\n        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-text-secondary">\n            <div>\n                <h4 class="text-xl font-bold mb-4">\n                    <span style="color: var(--text-primary);">X</span><span style="color: var(--accent-primary);">shop</span>\n                </h4>\n                <p class="text-sm">Platform terpercaya untuk jual beli akun game, top-up, dan layanan joki.</p>\n                <div class="flex space-x-4 mt-4">\n                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>\n                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-instagram text-xl"></i></a>\n                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-discord text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-youtube text-xl"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-text-primary mb-4">Informasi</h4>\n                <ul class="space-y-2 text-sm">\n                    <li><a href="about-us.html" class="hover:text-accent-primary transition-colors">Tentang Kami</a></li>\n                    <li><a href="safety-center.html" class="hover:text-accent-primary transition-colors">Pusat Keamanan</a></li>\n                    <li><a href="kebijakan-privasi.html" class="hover:text-accent-primary transition-colors">Kebijakan Privasi</a></li>\n                    <li><a href="syarat-ketentuan.html" class="hover:text-accent-primary transition-colors">Syarat & Ketentuan</a></li>\n                    <li><a href="bantuan.html" class="hover:text-accent-primary transition-colors">Bantuan & FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-text-primary mb-4">Untuk Penjual</h4>\n                <ul class="space-y-2 text-sm">\n                    <li><a href="jual-akun.html" class="hover:text-accent-primary transition-colors">Jual Akun Anda</a></li>\n                    <li><a href="seller-dashboard.html" class="hover:text-accent-primary transition-colors">Dasbor Penjual</a></li>\n                    <li><a href="boost-listing.html" class="hover:text-accent-primary transition-colors">Promosikan Akun</a></li>\n                    <li><a href="seller-verification.html" class="hover:text-accent-primary transition-colors">Verifikasi Penjual</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-text-primary mb-4">Lainnya</h4>\n                <ul class="space-y-2 text-sm">\n                    <li><a href="blog.html" class="hover:text-accent-primary transition-colors">Blog & Berita</a></li>\n                    <li><a href="forum.html" class="hover:text-accent-primary transition-colors">Forum Komunitas</a></li>\n                    <li><a href="guides.html" class="hover:text-accent-primary transition-colors">Panduan Game</a></li>\n                    <li><a href="career.html" class="hover:text-accent-primary transition-colors">Karir di Xshop</a></li>\n                    <li><a href="affiliate.html" class="hover:text-accent-primary transition-colors">Program Afiliasi</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-text-secondary text-sm mt-8 pt-8 border-t border-gray-700">\n            &copy; 2025 Xshop. All rights reserved.\n        </div>
+    </footer>
+
+    <div class="md:hidden bottom-nav fixed bottom-0 left-0 right-0 py-3 flex justify-around items-center z-50">\n        <a href="transaksi.html" class="flex flex-col items-center text-text-secondary hover:text-accent-primary transition-colors">\n            <i class="fas fa-receipt text-xl mb-1"></i>\n            <span class="text-xs">Transaksi</span>\n        </a>
+        <a href="index.html" class="flex flex-col items-center text-text-secondary hover:text-accent-primary transition-colors">\n            <i class="fas fa-home text-xl mb-1"></i>\n            <span class="text-xs">Home</span>\n        </a>
+        <a href="jual-akun.html" class="flex flex-col items-center text-text-secondary hover:text-accent-primary transition-colors">\n            <i class="fas fa-upload text-xl mb-1"></i>\n            <span class="text-xs">Jual</span>\n        </a>
+        <a href="top-up.html" class="flex flex-col items-center text-text-secondary hover:text-accent-primary transition-colors">\n            <i class="fas fa-coins text-xl mb-1"></i>\n            <span class="text-xs">Top-Up</span>\n        </a>
+        <a href="profil.html" class="flex flex-col items-center text-accent-primary active-link">\n            <i class="fas fa-user text-xl mb-1"></i>
+            <span class="text-xs">Profil</span>
+        </a>
+    </div>
+
+    <script type="module" src="https://esm.sh/@supabase/supabase-js@2"></script>
+    <script type="module" src="script.js"></script>
+
+    <script type="module">\n        // JavaScript khusus untuk halaman admin-manage-users (Memeriksa akses admin)\n        // Pastikan ini dimuat SETELAH script.js utama\n        document.addEventListener(\'DOMContentLoaded\', async () => {\n            await checkAdminAccess(); // Memanggil fungsi global checkAdminAccess dari script.js\n            // Menerapkan tema saat halaman dimuat\n            const savedTheme = localStorage.getItem(\'theme\') || \'dark\'; // Default dark\n            setTheme(savedTheme); // Memanggil fungsi global setTheme dari script.js\n        });\n    </script>\n</body>
+</html>

@@ -1,0 +1,413 @@
+/* style.css */
+
+/* --- Skema Warna Final (Mengikuti Contoh Gambar & Penamaan Variabel Baru) --- */
+:root {
+    /* Warna Mode Gelap (Default) */
+    --bg-primary: #000000;   /* Hitam Pekat */
+    --bg-secondary: #121212; /* Abu-abu Sangat Gelap (untuk elemen seperti header, kartu) */
+    --accent-primary: #00BCD4;       /* Teal/Cyan Cerah (untuk CTA, highlight) */
+    --accent-hover: #00AABF;         /* Teal/Cyan Cerah sedikit lebih gelap untuk hover */
+    --text-primary: #FFFFFF;         /* Putih (untuk judul, teks utama) */
+    --text-secondary: #BDBDBD;       /* Abu-abu Terang (untuk deskripsi, teks sekunder) */
+    --border-color-dark: #333333;    /* Border abu-abu gelap */
+
+    /* Warna Status (tetap sama untuk kedua mode) */
+    --status-success: #4CAF50;       /* Hijau Cerah (untuk status sukses, pendapatan) */
+    --status-error: #F44336;         /* Merah Cerah (untuk status error) */
+    --status-warning: #FFEB3B;       /* Kuning Cerah (untuk status peringatan) */
+    --header-bg-blur: rgba(0,0,0,0.5); /* Background header dengan blur */
+}
+
+/* Definisi Warna untuk Mode Terang */
+body[data-theme='light'] {
+    --bg-primary: #FFFFFF;           /* Putih */
+    --bg-secondary: #F8F9FA;         /* Abu-abu Sangat Terang, sedikit lebih cerah */
+    --accent-primary: #1976D2;       /* Biru Tua Elegan untuk mode terang */
+    --accent-hover: #1565C0;         /* Biru Tua sedikit lebih gelap untuk hover mode terang */
+    --text-primary: #212529;         /* Hitam Gelap (untuk teks utama di terang) */
+    --text-secondary: #6C757D;       /* Abu-abu Sedang (untuk teks sekunder di terang) */
+    --border-color-dark: #CED4DA;    /* Border abu-abu terang */
+    --header-bg-blur: rgba(255,255,255,0.7); /* Background header terang dengan blur */
+}
+
+
+/* Base styles for the body */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transisi halus saat ganti tema */
+}
+
+/* Custom scrollbar for dark mode */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px; /* For horizontal scrollbars */
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--text-secondary);
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-primary);
+}
+
+
+/* Utility classes for consistency */
+.btn-primary {
+    background-color: var(--accent-primary);
+    color: var(--bg-primary); /* Text color for bright buttons */
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 188, 212, 0.3); /* Subtle glow for dark mode CTA */
+}
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.5); /* Enhanced glow on hover */
+}
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+body[data-theme='light'] .btn-primary {
+    box-shadow: none; /* No glow on light primary buttons */
+}
+
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+    transform: translateY(-2px);
+}
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Form Styles (adapted from form_jual_akun.txt, merged with input-field) */
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color-dark); /* gray-700 equivalent */
+    color: var(--text-primary);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+.form-input:focus {
+    outline: 2px solid transparent; /* Tailwind default focus ring */
+    outline-offset: 2px;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(0, 188, 212, 0.4); /* Glow effect on focus */
+}
+/* Specific style for file input button (Tailwind default is often grey/white) */
+.form-input[type="file"]::file-selector-button {
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+    font-weight: 600; /* semi-bold */
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px; /* full rounded */
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.form-input[type="file"]::file-selector-button:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Custom select arrow */
+select.form-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23BDBDBD" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Arrow color matching text-secondary */
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1.2em;
+    padding-right: 2.5rem; /* Space for the arrow */
+}
+/* Adjust arrow color for light mode */
+body[data-theme='light'] select.form-input {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%236C757D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Darker arrow for light mode */
+}
+
+
+.card {
+    background-color: var(--bg-secondary);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Softer shadow for dark mode */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+    border: 1px solid transparent; /* Default transparent border */
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+    border-color: var(--accent-primary); /* Accent border on hover */
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px; /* Full rounded */
+    font-weight: bold;
+    font-size: 0.75rem;
+    color: var(--bg-primary); /* Dark text on bright badge */
+    text-transform: uppercase;
+}
+
+.status-badge.success {
+    background-color: var(--status-success);
+}
+.status-badge.error {
+    background-color: var(--status-error);
+}
+.status-badge.warning {
+    background-color: var(--status-warning);
+}
+
+/* Specific styling for header elements */
+header {
+    background-color: var(--bg-secondary); /* Use bg-secondary for header */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); /* More pronounced shadow */
+    z-index: 1000; /* Ensure header stays on top */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Logo colors: Will be handled by text-primary and accent-primary vars in HTML */
+/* No inline styles for logo anymore */
+
+header nav a {
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+header nav a:hover {
+    color: var(--accent-primary);
+}
+
+/* Mobile menu overlay */
+#mobile-menu-overlay {
+    background-color: rgba(0, 0, 0, 0.95); /* Semi-transparent black */
+    transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+}
+body[data-theme='light'] #mobile-menu-overlay {
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+}
+
+#mobile-menu-overlay nav a {
+    color: var(--text-primary);
+}
+#mobile-menu-overlay nav a:hover {
+    color: var(--accent-primary);
+}
+
+/* Floating Search Bar */
+.floating-search-bar {
+    background-color: rgba(0, 0, 0, 0.0); /* Background transparent */
+    border-color: transparent;
+    transition: all 0.3s ease;
+}
+.floating-search-bar input {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    border-color: var(--border-color-dark);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* Stronger shadow for floating effect */
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+.floating-search-bar input:focus {
+    background-color: var(--bg-primary); /* Solid black on focus */
+}
+body[data-theme='light'] .floating-search-bar input {
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: var(--text-primary);
+}
+body[data-theme='light'] .floating-search-bar input:focus {
+    background-color: var(--bg-primary); /* Solid white on focus */
+}
+
+
+/* Floating Back Button */
+.back-button-floating {
+    position: sticky; /* or fixed, depending on desired behavior */
+    top: 90px; /* Adjust based on header height and desired offset */
+    left: 1rem; /* From left edge */
+    z-index: 30; /* Below floating search, above content */
+    background-color: rgba(18, 18, 18, 0.7); /* bg-secondary with transparency */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px; /* Fully rounded pill shape */
+    border: 1px solid var(--border-color-dark);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    text-decoration: none; /* Ensure it looks like a button not a link */
+}
+.back-button-floating:hover {
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 188, 212, 0.4);
+}
+body[data-theme='light'] .back-button-floating {
+    background-color: rgba(248, 249, 250, 0.7); /* Light secondary with transparency */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Footer mobile nav */
+.bottom-nav {
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color-dark);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.bottom-nav a {
+    color: var(--text-secondary);
+}
+.bottom-nav a.active-link {
+    color: var(--accent-primary);
+}
+
+/* Slideshow specific styles */
+.slide-container {
+    overflow: hidden;
+}
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.slide {
+    flex: 0 0 100%; /* Each slide takes full width */
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start; /* Align content to bottom-left */
+    padding: 2rem; /* More padding for text */
+    font-weight: bold;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9); /* Stronger text shadow */
+}
+.slide h2 {
+    color: var(--text-primary);
+    font-size: 2.5rem; /* Larger font for banners */
+    line-height: 1.2;
+}
+.slide-nav-button {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    border-radius: 9999px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.slide-nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--accent-primary); /* Accent on hover */
+}
+.dot-navigation .dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: var(--text-secondary);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.dot-navigation .dot.active {
+    background-color: var(--accent-primary);
+}
+
+/* Accordion for FAQ */
+.accordion-item {
+    border: 1px solid var(--border-color-dark);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-bottom: 0.75rem; /* Space between accordion items */
+    transition: border-color 0.3s ease;
+}
+.accordion-header {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 1rem;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.accordion-header:hover {
+    background-color: #1a1a1a; /* Slightly darker secondary */
+}
+body[data-theme='light'] .accordion-header:hover {
+    background-color: #E2E8F0; /* Slightly lighter secondary for light mode */
+}
+.accordion-header .fas {
+    transition: transform 0.3s ease;
+}
+.accordion-header.active .fas {
+    transform: rotate(180deg);
+}
+.accordion-content {
+    background-color: var(--bg-primary);
+    border-top: 1px solid var(--border-color-dark);
+    padding: 1rem;
+    color: var(--text-secondary);
+    display: none; /* Hidden by default */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Responsive Prose for markdown-like content */
+.prose {
+    color: var(--text-primary);
+    max-width: none; /* Override default max-width for prose */
+}
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    color: var(--accent-primary);
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+}
+.prose p {
+    color: var(--text-secondary);
+    margin-bottom: 1em;
+}
+.prose ul, .prose ol {
+    color: var(--text-secondary); /* List content also uses text-secondary for better readability in lists */
+    margin-left: 1.5em;
+    list-style-type: disc; /* Ensure disc for ul */
+}
+.prose ol {
+    list-style-type: decimal;
+}
+.prose a {
+    color: var(--accent-primary);
+    text-decoration: underline;
+}
+.prose strong {
+    color: var(--text-primary); /* Bold text is primary color */
+}
