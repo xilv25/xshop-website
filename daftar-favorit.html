@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Favorit - Xshop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    </head>
+<body class="bg-bg-primary text-text-primary font-sans flex flex-col min-h-screen">
+
+    <header class="bg-bg-secondary p-4 flex justify-between items-center shadow-lg sticky top-0 z-50">
+        <a href="index.html" class="text-3xl font-extrabold tracking-tight">
+            <span style="color: var(--text-primary);">X</span><span style="color: var(--accent-primary);">shop</span>
+        </a>
+        
+        <nav class="hidden md:flex items-center space-x-6">
+            <a href="jual-akun.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Jual Akun</a>
+            <a href="top-up.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Top-Up</a>
+            <a href="joki.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Joki</a>
+            <a href="bantuan.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Bantuan</a>
+            
+            <div class="relative group">
+                <button class="flex items-center space-x-2 text-text-primary hover:text-accent-primary transition-colors duration-200 focus:outline-none">
+                    <i class="fas fa-user-circle text-2xl text-accent-primary"></i>
+                    <span class="hidden lg:inline text-text-primary">Profil</span>
+                </button>
+                <div class="absolute right-0 mt-2 w-48 bg-bg-secondary rounded-md shadow-lg py-1 hidden group-hover:block transition-all duration-200 ease-out transform scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 origin-top-right">
+                    <a href="profil.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Profil Saya</a>
+                    <a href="transaksi.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Riwayat Transaksi</a>
+                    <a href="seller-dashboard.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Dasbor Penjual</a>
+                    <hr class="border-gray-700 my-1">
+                    <a href="login.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Login / Register</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="md:hidden">
+            <button id="menu-button" class="text-accent-primary focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-bg-primary bg-opacity-95 z-[999] hidden md:hidden flex flex-col">
+        <div class="flex justify-end p-4">
+            <button id="close-menu-button" class="text-accent-primary focus:outline-none">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col items-center space-y-6 text-xl mt-8">
+            <a href="index.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Home</a>
+            <a href="jual-akun.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Jual Akun</a>
+            <a href="top-up.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Top-Up</a>
+            <a href="joki.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Joki</a>
+            <a href="bantuan.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Bantuan</a>
+            <a href="profil.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Profil</a>
+            <a href="login.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Login / Register</a>
+            <hr class="border-gray-700 w-1/2 my-4">
+            <input type="text" placeholder="Cari..." class="w-4/5 p-2 rounded-lg bg-transparent border border-gray-700 text-text-primary shadow-inner focus:border-accent-primary focus:ring-1 focus:ring-accent-primary">
+        </nav>
+    </div>
+
+    <div class="floating-search-bar fixed top-[70px] md:top-[80px] left-1/2 -translate-x-1/2 w-[90%] md:w-3/5 lg:w-2/5 z-40 hidden">
+        <div class="relative">
+            <input type="text" placeholder="Cari akun, game, layanan..." class="w-full p-3 pl-10 rounded-full text-text-primary">
+            <i class="fas fa-search text-text-secondary absolute left-3 top-1/2 -translate-y-1/2"></i>
+        </div>
+    </div>
+
+
+    <main class="flex-grow container mx-auto px-4 py-8 md:p-8">
+
+        <button onclick="window.history.back()" class="back-button-floating">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </button>
+
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-8 text-center">Daftar Akun Favorit Anda</h2>
+        
+        <div class="bg-bg-secondary p-6 md:p-8 rounded-xl shadow-xl max-w-4xl mx-auto">
+            <p class="text-text-secondary mb-6 text-center">Berikut adalah akun game yang Anda tandai sebagai favorit.</p>
+            
+            <div id="favorite-accounts-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <a href="detail-akun.html?id=fav-1" class="card">
+                    <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=Fav+ML" alt="Akun Favorit Mobile Legends" class="w-full h-40 object-cover rounded-t-xl">
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Mobile Legends: Akun GG Epic</h4>
+                        <p class="text-text-secondary text-sm mb-2 line-clamp-2">Mythic Immortal, 150+ Skin, Hero Lengkap!</p>
+                        <p class="text-text-primary font-extrabold text-xl">Rp 1.200.000</p>
+                        <span class="status-badge warning mt-2 inline-block">Diskon Cepat!</span>
+                    </div>
+                </a>
+                <a href="detail-akun.html?id=fav-2" class="card">
+                    <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=Fav+Genshin" alt="Akun Favorit Genshin Impact" class="w-full h-40 object-cover rounded-t-xl">
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Genshin Impact: Akun Ciamik!</h4>
+                        <p class="text-text-secondary text-sm mb-2 line-clamp-2">AR60, C6 Raiden, C6 Nahida, Senjata Signature!</p>
+                        <p class="text-text-primary font-extrabold text-xl">Rp 6.000.000</p>
+                    </div>
+                </a>
+                <a href="detail-akun.html?id=fav-3" class="card">
+                    <img src="https://via.placeholder.com/400x250/1C1C1C/BDBDBD?text=Fav+Valorant" alt="Akun Favorit Valorant" class="w-full h-40 object-cover rounded-t-xl">
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold text-text-primary mb-1 truncate">Valorant: Akun Radiant Episode 7</h4>
+                        <p class="text-text-secondary text-sm mb-2 line-clamp-2">Rank Radiant, Semua Agent Terbuka, Koleksi Skin Langka!</p>
+                        <p class="text-text-primary font-extrabold text-xl">Rp 3.800.000</p>
+                    </div>
+                </a>
+                </div>
+
+            <div class="text-center mt-8">
+                <button class="btn-secondary py-3 px-6 rounded-lg text-base">Muat Lebih Banyak Favorit</button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-bg-secondary p-8 mt-auto">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-text-secondary">
+            <div>
+                <h4 class="text-xl font-bold mb-4">
+                    <span style="color: var(--text-primary);">X</span><span style="color: var(--accent-primary);">shop</span>
+                </h4>
+                <p class="text-sm">Platform terpercaya untuk jual beli akun game, top-up, dan layanan joki.</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-discord text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-youtube text-xl"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-text-primary mb-4">Informasi</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="about-us.html" class="hover:text-accent-primary transition-colors">Tentang Kami</a></li>
+                    <li><a href="safety-center.html" class="hover:text-accent-primary transition-colors">Pusat Keamanan</a></li>
+                    <li><a href="kebijakan-privasi.html" class="hover:text-accent-primary transition-colors">Kebijakan Privasi</a></li>
+                    <li><a href="syarat-ketentuan.html" class="hover:text-accent-primary transition-colors">Syarat & Ketentuan</a></li>
+                    <li><a href="bantuan.html" class="hover:text-accent-primary transition-colors">Bantuan & FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-text-primary mb-4">Untuk Penjual</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="jual-akun.html" class="hover:text-accent-primary transition-colors">Jual Akun Anda</a></li>
+                    <li><a href="seller-dashboard.html" class="hover:text-accent-primary transition-colors">Dasbor Penjual</a></li>
+                    <li><a href="boost-listing.html" class="hover:text-accent-primary transition-colors">Promosikan Akun</a></li>
+                    <li><a href="seller-verification.html" class="hover:text-accent-primary transition-colors">Verifikasi Penjual</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-text-primary mb-4">Lainnya</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="blog.html" class="hover:text-accent-primary transition-colors">Blog & Berita</a></li>
+                    <li><a href="forum.html" class="hover:text-accent-primary transition-colors">Forum Komunitas</a></li>
+                    <li><a href="guides.html" class="hover:text-accent-primary transition-colors">Panduan Game</a></li>
+                    <li><a href="career.html" class="hover:text-accent-primary transition-colors">Karir di Xshop</a></li>
+                    <li><a href="affiliate.html" class="hover:text-accent-primary transition-colors">Program Afiliasi</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-text-secondary text-sm mt-8 pt-8 border-t border-gray-700">
+            &copy; 2025 Xshop. All rights reserved.
+        </div>
+    </footer>
+
+    <div class="md:hidden bottom-nav fixed bottom-0 left-0 right-0 py-3 flex justify-around items-center z-50">
+        <a href="transaksi.html" class="flex flex-col items-center text-text-secondary hover:text-accent-primary transition-colors">
+            <i class="fas fa-receipt text-xl mb-1"></i>
+            <span class="text-xs">Transaksi</span>
+        </a>
+        <a href="index.html" class="flex flex-col items-center text-text-secondary hover:text-accent-primary transition-colors">
+            <i class="fas fa-home text-xl mb-1"></i>
+            <span class="text-xs">Home</span>
+        </a>
+        <a href="jual-akun.html" class="flex flex-col items-center text-text-secondary hover:text-accent-primary transition-colors">
+            <i class="fas fa-upload text-xl mb-1"></i>
+            <span class="text-xs">Jual</span>
+        </a>
+        <a href="top-up.html" class="flex flex-col items-center text-text-secondary hover:text-accent-primary transition-colors">
+            <i class="fas fa-coins text-xl mb-1"></i>
+            <span class="text-xs">Top-Up</span>
+        </a>
+        <a href="profil.html" class="flex flex-col items-center text-accent-primary active-link">
+            <i class="fas fa-user text-xl mb-1"></i>
+            <span class="text-xs">Profil</span>
+        </a>
+    </div>
+
+    <script type="module" src="https://esm.sh/@supabase/supabase-js@2"></script>
+    <script type="module" src="script.js"></script>
+    
+    <script type="module">
+        // JavaScript untuk menerapkan tema saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'dark'; // Default dark
+            setTheme(savedTheme); // Memanggil fungsi global setTheme dari script.js
+        });
+    </script>
+</body>
+</html>

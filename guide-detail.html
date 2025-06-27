@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Panduan Game - Xshop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    </head>
+<body class="bg-bg-primary text-text-primary font-sans flex flex-col min-h-screen">
+
+    <header class="bg-bg-secondary p-4 flex justify-between items-center shadow-lg sticky top-0 z-50">
+        <a href="index.html" class="text-3xl font-extrabold tracking-tight">
+            <span style="color: var(--text-primary);">X</span><span style="color: var(--accent-primary);">shop</span>
+        </a>
+        
+        <nav class="hidden md:flex items-center space-x-6">
+            <a href="jual-akun.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Jual Akun</a>
+            <a href="top-up.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Top-Up</a>
+            <a href="joki.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Joki</a>
+            <a href="bantuan.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Bantuan</a>
+            
+            <div class="relative group">
+                <button class="flex items-center space-x-2 text-text-primary hover:text-accent-primary transition-colors duration-200 focus:outline-none">
+                    <i class="fas fa-user-circle text-2xl text-accent-primary"></i>
+                    <span class="hidden lg:inline text-text-primary">Profil</span>
+                </button>
+                <div class="absolute right-0 mt-2 w-48 bg-bg-secondary rounded-md shadow-lg py-1 hidden group-hover:block transition-all duration-200 ease-out transform scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 origin-top-right">
+                    <a href="profil.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Profil Saya</a>
+                    <a href="transaksi.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Riwayat Transaksi</a>
+                    <a href="seller-dashboard.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Dasbor Penjual</a>
+                    <hr class="border-gray-700 my-1">
+                    <a href="login.html" class="block px-4 py-2 text-text-primary hover:bg-bg-primary">Login / Register</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="md:hidden">
+            <button id="menu-button" class="text-accent-primary focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-bg-primary bg-opacity-95 z-[999] hidden md:hidden flex flex-col">
+        <div class="flex justify-end p-4">
+            <button id="close-menu-button" class="text-accent-primary focus:outline-none">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col items-center space-y-6 text-xl mt-8">
+            <a href="index.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Home</a>
+            <a href="jual-akun.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Jual Akun</a>
+            <a href="top-up.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Top-Up</a>
+            <a href="joki.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Joki</a>
+            <a href="bantuan.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Bantuan</a>
+            <a href="profil.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Profil</a>
+            <a href="login.html" class="text-text-primary hover:text-accent-primary transition-colors duration-200">Login / Register</a>
+            <hr class="border-gray-700 w-1/2 my-4">
+            <input type="text" placeholder="Cari..." class="w-4/5 p-2 rounded-lg bg-transparent border border-gray-700 text-text-primary shadow-inner focus:border-accent-primary focus:ring-1 focus:ring-accent-primary">
+        </nav>
+    </div>
+
+    <div class="floating-search-bar fixed top-[70px] md:top-[80px] left-1/2 -translate-x-1/2 w-[90%] md:w-3/5 lg:w-2/5 z-40 hidden">
+        <div class="relative">
+            <input type="text" placeholder="Cari akun, game, layanan..." class="w-full p-3 pl-10 rounded-full text-text-primary">
+            <i class="fas fa-search text-text-secondary absolute left-3 top-1/2 -translate-y-1/2"></i>
+        </div>
+    </div>
+
+
+    <main class="flex-grow container mx-auto px-4 py-8 md:p-8">
+
+        <button onclick="window.history.back()" class="back-button-floating">
+            <i class="fas fa-arrow-left"></i> Kembali ke Panduan
+        </button>
+
+        <h2 id="guide-title" class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Panduan Lengkap Build Hero Fighter Terbaru (MLBB)</h2>
+        <p class="text-text-secondary text-sm mb-6">Game: <span id="guide-game">Mobile Legends</span> | Durasi Baca: <span id="guide-read-time">10 Menit</span></p>
+        
+        <div class="bg-bg-secondary p-6 md:p-8 rounded-xl shadow-xl">
+            <div id="guide-content" class="prose text-text-secondary mb-8">
+                <p>Selamat datang, para *fighter* sejati Land of Dawn! Dalam panduan ini, kita akan membahas secara mendalam build item terbaru untuk hero *fighter* di Mobile Legends yang sedang META. Pemilihan item yang tepat adalah kunci untuk mendominasi pertandingan dan membawa tim Anda menuju kemenangan.</p>
+
+                <h3>Pemahaman Dasar Fighter</h3>
+                <p>Hero *fighter* adalah salah satu tipe hero paling serbaguna di Mobile Legends. Mereka mampu memberikan *damage* yang signifikan, memiliki daya tahan yang cukup baik, dan seringkali memiliki kemampuan *crowd control*. Peran mereka bisa sangat fleksibel, mulai dari *offlaner*, *jungler*, bahkan terkadang *midlaner*.</p>
+
+                <h3>Build Item Inti (Core Items)</h3>
+                <p>Setiap *fighter* memiliki item inti yang hampir wajib dimiliki. Ini adalah item yang akan sangat meningkatkan potensi hero Anda:</p>
+                <ol>
+                    <li>**Warrior Boots / Tough Boots:** Pilih sesuai komposisi musuh. Warrior untuk *physical damage*, Tough untuk *magic damage* dan *crowd control reduction*.</li>
+                    <li>**Bloodlust Axe:** Item wajib untuk *fighter* yang mengandalkan *skill damage* karena efek *spell vamp*-nya yang besar.</li>
+                    <li>**Blade of Despair:** Peningkatan *physical attack* tertinggi dan pasif yang memberikan *damage* ekstra pada musuh dengan HP rendah.</li>
+                </ol>
+
+                <h3>Item Situasional</h3>
+                <p>Setelah item inti, pemilihan item selanjutnya sangat bergantung pada situasi pertandingan:</p>
+                <ul>
+                    <li>**Defense Items (contoh: Antique Cuirass, Athena's Shield, Brute Force Breastplate):** Jika musuh memiliki *damage* fisik atau *magic* yang besar.</li>
+                    <li>**Offensive Items (contoh: Hunter Strike, Malefic Roar, Endless Battle):** Jika Anda perlu lebih banyak *damage* atau *sustain* dalam pertarungan.</li>
+                    <li>**Penetration Items (contoh: Malefic Roar, War Axe):** Jika musuh memiliki *defense* yang tinggi.</li>
+                </ul>
+
+                <h3>Emblem & Spell Rekomendasi</h3>
+                <p>Selain item, pemilihan emblem dan *battle spell* juga sangat krusial:</p>
+                <ul>
+                    <li>**Emblem Fighter (Festival of Blood / Disabling Strike):** Festival of Blood sangat baik untuk *sustain*, sementara Disabling Strike cocok untuk *burst damage*.</li>
+                    <li>**Battle Spell:** Flicker (untuk inisiasi atau melarikan diri), Execute (untuk *finishing*), atau Petrify (*crowd control* instan).</li>
+                </ul>
+
+                <h3>Tips Bermain</h3>
+                <p>Beberapa tips tambahan untuk memaksimalkan performa *fighter* Anda:</p>
+                <ul>
+                    <li>Pahami *power spike* hero Anda.</li>
+                    <li>Selalu perhatikan *minimap* dan posisi musuh.</li>
+                    <li>Jangan ragu untuk inisiasi jika tim Anda siap *follow-up*.</li>
+                    <li>Lakukan *split push* di waktu yang tepat.</li>
+                </ul>
+
+                <p>Semoga panduan ini membantu Anda menjadi *fighter* yang tak terkalahkan di Land of Dawn! Jangan lupa praktikkan di pertandingan.</p>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-gray-700">
+                <h3 class="text-xl font-bold text-text-primary mb-4">Panduan Terkait</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="guide-detail.html?id=similiar-1" class="p-4 rounded-lg bg-bg-primary hover:bg-gray-800 transition-colors duration-200 flex flex-col card">
+                        <p class="text-lg font-semibold text-text-primary mb-1">Tips Meningkatkan Win Rate di Ranked Mobile Legends</p>
+                        <p class="text-sm text-text-secondary">Game: Mobile Legends | Durasi Baca: 7 Menit</p>
+                    </a>
+                    <a href="guide-detail.html?id=similiar-2" class="p-4 rounded-lg bg-bg-primary hover:bg-gray-800 transition-colors duration-200 flex flex-col card">
+                        <p class="text-lg font-semibold text-text-primary mb-1">Panduan Lengkap Hero Fighter "A" (Skill & Combo)</p>
+                        <p class="text-sm text-text-secondary">Game: Mobile Legends | Durasi Baca: 5 Menit</p>
+                    </a>
+                </div>
+                <div class="text-center mt-6">
+                    <a href="guides.html" class="btn-secondary py-2 px-6 rounded-lg text-base">Lihat Semua Panduan</a>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-bg-secondary p-8 mt-auto">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-text-secondary">
+            <div>
+                <h4 class="text-xl font-bold mb-4">
+                    <span style="color: var(--text-primary);">X</span><span style="color: var(--accent-primary);">shop</span>
+                </h4>
+                <p class="text-sm">Platform terpercaya untuk jual beli akun game, top-up, dan layanan joki.</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-discord text-xl"></i></a>
+                    <a href="#" class="text-text-secondary hover:text-accent-primary transition-colors"><i class="fab fa-youtube text-xl"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-text-primary mb-4">Informasi</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="about-us.html" class="hover:text-accent-primary transition-colors">Tentang Kami</a></li>
+                    <li><a href="safety-center.html" class="hover:text-accent-primary transition-colors">Pusat Keamanan</a></li>
+                    <li><a href="kebijakan-privasi.html" class="hover:text-accent-primary transition-colors">Kebijakan Privasi</a></li>
+                    <li><a href="syarat-ketentuan.html" class="hover:text-accent-primary transition-colors">Syarat & Ketentuan</a></li>
+                    <li><a href="bantuan.html" class="hover:text-accent-primary transition-colors">Bantuan & FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-text-primary mb-4">Untuk Penjual</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="jual-akun.html" class="hover:text-accent-primary transition-colors">Jual Akun Anda</a></li>
+                    <li><a href="seller-dashboard.html" class="hover:text-accent-primary transition-colors">Dasbor Penjual</a></li>
+                    <li><a href="boost-listing.html" class="hover:text-accent-primary transition-colors">Promosikan Akun</a></li>
+                    <li><a href="seller-verification.html" class="hover:text-accent-primary transition-colors">Verifikasi Penjual</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold text-text-primary mb-4">Lainnya</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="blog.html" class="hover:text-accent-primary transition-colors">Blog & Berita</a></li>
+                    <li><a href="forum.html" class="hover:text-accent-primary transition-colors">Forum Komunitas</a></li>
+                    <li><a href="guides.html" class="hover:text-accent-primary transition-colors">Panduan Game</a></li>
+                    <li><a href="career.html" class="hover:text-accent-primary transition-colors">Karir di Xshop</a></li>
+                    <li><a href="affiliate.html" class="hover:text-accent-primary transition-colors">Program Afiliasi</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-text-secondary text-sm mt-8 pt-8 border-t border-gray-700">
+            &copy; 2025 Xshop. All rights reserved.
+        </div>
+    </footer>
+
+    <script type="module" src="https://esm.sh/@supabase/supabase-js@2"></script>
+    <script type="module" src="script.js"></script>
+    
+    <script type="module">
+        // JavaScript untuk menerapkan tema saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'dark'; // Default dark
+            setTheme(savedTheme); // Memanggil fungsi global setTheme dari script.js
+        });
+    </script>
+</body>
+</html>
